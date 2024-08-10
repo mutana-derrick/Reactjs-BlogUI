@@ -1,56 +1,124 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { Link } from "react-router-dom";
 
 function PostList() {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get("/api/posts");
-        setPosts(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchPosts();
-  }, []);
-
-  const handleDelete = async (id) => {
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`/api/posts/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setPosts(posts.filter((post) => post.id !== id));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // Static list of posts for design purposes
+  const posts = [
+    {
+      id: 1,
+      title: "First Blog Post",
+      author: "John Doe",
+      timestamp: "2024-08-10T12:00:00Z",
+      content: "This is the content of the first blog post. It's just a placeholder for design.",
+    },
+    {
+      id: 2,
+      title: "Second Blog Post",
+      author: "Jane Smith",
+      timestamp: "2024-08-09T14:30:00Z",
+      content: "This is the content of the second blog post. It looks just as interesting as the first one!",
+    },
+    {
+      id: 3,
+      title: "Third Blog Post",
+      author: "Jane Smith",
+      timestamp: "2024-08-09T14:30:00Z",
+      content: "This is the content of the third blog post. It’s packed with great insights!",
+    },
+    {
+      id: 4,
+      title: "Fourth Blog Post",
+      author: "Jane Smith",
+      timestamp: "2024-08-09T14:30:00Z",
+      content: "This is the content of the fourth blog post. Another interesting read!",
+    },
+  ];
 
   return (
-    <body>
-      <div>
-        <h2>Posts</h2>
-        {localStorage.getItem("token") && (
-          <Link to="/create-post">Create Post</Link>
-        )}
-        <ul>
-          {posts.map((post) => (
-            <li key={post.id}>
-              <Link to={`/post/${post.id}`}>{post.title}</Link>
-              {localStorage.getItem("token") && (
-                <>
-                  <button onClick={() => handleDelete(post.id)}>Delete</button>
-                  <Link to={`/edit-post/${post.id}`}>Edit</Link>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+    <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+      {/* Header */}
+      <header
+        className="navbar navbar-expand-lg navbar-light bg-light shadow"
+        style={{
+          backgroundColor: "#f8f9fa",
+          padding: "10px 20px",
+          borderRadius: "10px",
+          marginBottom: "20px",
+        }}
+      
+      >
+        <div className="container">
+          <h1 className="navbar-brand mb-0">Blog Management</h1>
+          <div className="ml-auto">
+            <Link to="/login" className="btn btn-outline-primary mr-2">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-primary">
+              Register
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div
+        className="container shadow mt-4"
+        style={{
+          backgroundColor: "#ffffcf",
+          padding: "20px",
+          borderRadius: "10px",
+        }}
+      >
+        
+        <div className="text-right mb-3">
+          <Link to="/create-post" className="btn btn-primary">
+            Create Post
+          </Link>
+        </div>
+        <div className="row">
+        {posts.map((post) => (
+          <div className="col-md-6 -sm mb-4" key={post.id}>
+            <div className="card shadow" style={{ backgroundColor: "#ffffff" }}>
+              <div className="card-body">
+                <h5 className="card-title">{post.title}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  by {post.author} on {new Date(post.timestamp).toLocaleDateString()}
+                </h6>
+                <p className="card-text">{post.content}</p>
+                <div className="d-flex justify-content-between">
+                  <Link
+                    to={`/post/${post.id}`}
+                    className="btn btn-secondary btn-sm"
+                  >
+                    View Post
+                  </Link>
+                  <Link
+                    to={`/post/${post.id}/comments`}
+                    className="btn btn-info btn-sm"
+                  >
+                    <i className="fas fa-comment"></i> Comment
+                  </Link>
+                </div>
+                <div className="mt-3 d-flex justify-content-between">
+                  <Link
+                    to={`/edit-post/${post.id}`}
+                    className="btn btn-warning btn-sm"
+                  >
+                    <i className="fas fa-edit"></i> Edit
+                  </Link>
+                  <button
+                    className="btn btn-danger btn-sm"
+                  >
+                    <i className="fas fa-trash"></i> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
-    </body>
+      </div>
+    </div>
   );
 }
 
