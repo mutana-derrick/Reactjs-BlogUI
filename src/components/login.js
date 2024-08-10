@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/login.css"; // Import the CSS file
+import "../styles/login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  // Simple client-side validation functions
   const validateUsername = (username) => {
-    return username.length >= 3; // Example: Username must be at least 3 characters long
+    return username.length >= 3;
   };
 
   const validatePassword = (password) => {
-    return password.length >= 6; // Example: Password must be at least 6 characters long
+    return password.length >= 6;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate input fields
     if (!validateUsername(username)) {
       setError("Username must be at least 3 characters long.");
       return;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/register.css"; // Import the CSS file
+import "../styles/register.css";
 
 function Register() {
   const [username, setUsername] = useState("");
@@ -8,13 +8,11 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
-  // Simple client-side validation functions
   const validateUsername = (username) => {
-    return username.length >= 3; // Example: Username must be at least 3 characters long
+    return username.length >= 3;
   };
 
   const validatePassword = (password) => {
-    // Example: Password must be at least 6 characters long and include one special character
     const regex = /^(?=.*[!@#$%^&*])(?=.*[A-Za-z])(?=.*\d).{6,}$/;
     return regex.test(password);
   };
@@ -29,7 +27,9 @@ function Register() {
     }
 
     if (!validatePassword(password)) {
-      setError("Password must be at least 6 characters long and include at least one special character.");
+      setError(
+        "Password must be at least 6 characters long and include at least one special character."
+      );
       return;
     }
 
@@ -38,9 +38,8 @@ function Register() {
       return;
     }
 
-    // Handle registration logic here, e.g., make an API call to register the user
     console.log({ username, password });
-    setError(null); // Clear any previous errors
+    setError(null);
   };
 
   return (

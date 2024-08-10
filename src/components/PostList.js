@@ -1,7 +1,6 @@
-// src/components/postList.js
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/postlist.css'; // Import the CSS file
+import '../styles/postlist.css'; 
 
 function PostList() {
   const posts = [
@@ -105,6 +104,13 @@ function PostList() {
           ))}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="footer bg-light text-center py-3 mt-4">
+        <p className="mb-0">
+          &copy; 2024 Blog Management. All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 }
