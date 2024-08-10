@@ -8,8 +8,29 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  // Simple client-side validation functions
+  const validateUsername = (username) => {
+    return username.length >= 3; // Example: Username must be at least 3 characters long
+  };
+
+  const validatePassword = (password) => {
+    return password.length >= 6; // Example: Password must be at least 6 characters long
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate input fields
+    if (!validateUsername(username)) {
+      setError("Username must be at least 3 characters long.");
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
     try {
       const response = await axios.post("/api/login", { username, password });
       localStorage.setItem("token", response.data.token);

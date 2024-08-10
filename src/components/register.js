@@ -1,4 +1,3 @@
-// src/components/register.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/register.css"; // Import the CSS file
@@ -9,14 +8,39 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
+  // Simple client-side validation functions
+  const validateUsername = (username) => {
+    return username.length >= 3; // Example: Username must be at least 3 characters long
+  };
+
+  const validatePassword = (password) => {
+    // Example: Password must be at least 6 characters long and include one special character
+    const regex = /^(?=.*[!@#$%^&*])(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+    return regex.test(password);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
+
+    // Validate input fields
+    if (!validateUsername(username)) {
+      setError("Username must be at least 3 characters long.");
       return;
     }
+
+    if (!validatePassword(password)) {
+      setError("Password must be at least 6 characters long and include at least one special character.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     // Handle registration logic here, e.g., make an API call to register the user
     console.log({ username, password });
+    setError(null); // Clear any previous errors
   };
 
   return (
