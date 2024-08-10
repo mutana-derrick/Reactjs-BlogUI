@@ -14,4 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+*****************************************************************************************************************
+## Overview
+This project includes:
+
+* Login: A user authentication page to log in to the application.
+* Register: A registration page for new users to create an account.
+* Post List: responsive component for displaying and managing blog posts.
 
