@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import "../styles/login.css"; // Import the CSS file
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -18,28 +20,8 @@ function Login() {
   };
 
   return (
-    <div
-      className="login-container"
-      style={{
-        backgroundColor: "#ffffcf",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <form
-        className="login-form"
-        onSubmit={handleSubmit}
-        style={{
-          backgroundColor: "#ffffff",
-          padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-          width: "500px",
-          height: "300px",
-        }}
-      >
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2 className="text-center">
           Login <i className="fa-solid fa-user-tie"></i>
         </h2>
@@ -71,6 +53,12 @@ function Login() {
           Login <i className="fa-solid fa-arrow-right-to-bracket"></i>
         </button>
         {error && <div className="alert alert-danger mt-3">{error}</div>}
+        <div className="text-center mt-3">
+          No account?{" "}
+          <Link to="/register" className="text-primary">
+            Register
+          </Link>
+        </div>
       </form>
     </div>
   );

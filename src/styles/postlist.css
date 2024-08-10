@@ -1,0 +1,22 @@
+/* src/styles/postList.css */
+.post-list-container {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.navbar-custom {
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.content-container {
+  background-color: #ffffcf;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-custom {
+  background-color: #ffffff;
+}

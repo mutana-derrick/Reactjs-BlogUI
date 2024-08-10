@@ -1,0 +1,34 @@
+/* src/styles/register.css */
+.register-container {
+  background-color: #ffffcf;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  height: 450px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.alert {
+  margin-top: 1rem;
+}
+
+.text-primary {
+  color: #007bff;
+}

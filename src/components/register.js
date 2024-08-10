@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+// src/components/register.js
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../styles/register.css"; // Import the CSS file
 
 function Register() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
     // Handle registration logic here, e.g., make an API call to register the user
@@ -17,9 +20,11 @@ function Register() {
   };
 
   return (
-    <div className="register-container" style={{ backgroundColor: '#ffffcf', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <form className="register-form" onSubmit={handleSubmit} style={{ backgroundColor: '#ffffff', padding: '20px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', width: '500px', height: '400px' }}>
-        <h2 className="text-center">Register <i className="fa-solid fa-user-plus"></i></h2>
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+        <h2 className="text-center">
+          Register <i className="fa-solid fa-user-plus"></i>
+        </h2>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -60,6 +65,12 @@ function Register() {
           Register <i className="fa-solid fa-user-plus"></i>
         </button>
         {error && <div className="alert alert-danger mt-3">{error}</div>}
+        <div className="text-center mt-3">
+          Already have an account?{" "}
+          <Link to="/login" className="text-primary">
+            Log in
+          </Link>
+        </div>
       </form>
     </div>
   );
